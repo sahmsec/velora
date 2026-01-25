@@ -1,0 +1,48 @@
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #F5F1EA;
+  --foreground: #1A1A1A;
+  --velora-sand: #F5F1EA;
+  --velora-sand-dark: #E7DED1;
+  --velora-white: #FFFFFF;
+  --velora-black: #1A1A1A;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-velora-sand: var(--velora-sand);
+  --color-velora-sand-dark: var(--velora-sand-dark);
+  --color-velora-white: var(--velora-white);
+  --color-velora-black: var(--velora-black);
+  
+  --font-sans: 'General Sans', var(--font-inter), sans-serif;
+  --font-heading: 'General Sans', sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
