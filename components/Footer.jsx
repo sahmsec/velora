@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -57,8 +56,7 @@ export default function Footer() {
         {/* Middle Section: Watermark Logo */}
         <div className="flex items-center justify-center pointer-events-none select-none mb-16 overflow-hidden">
           <div className="relative flex items-center justify-center w-full max-w-[1200px]">
-            <Sparkles className="w-24 h-24 md:w-48 md:h-48 text-[#111111]/5 absolute left-0 md:-left-12 top-1/2 -translate-y-1/2" />
-            <span className="text-[15vw] leading-none font-medium tracking-tighter text-[#111111]/5 ml-[5vw] md:ml-[10vw]">
+            <span className="text-[12vw] leading-none font-bold tracking-[0.15em] uppercase text-[#111111]/5">
               Velora
             </span>
           </div>

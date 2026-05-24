@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Sparkles, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
+import LogoIcon from "@/components/LogoIcon";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
@@ -25,7 +26,7 @@ export default function FloatingNavbar() {
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-5 bg-velora-white/80 backdrop-blur-md border-b border-velora-sand-dark/20"
     >
       <Link href="/" className="flex items-center gap-2 group">
-        <Sparkles className="w-5 h-5 transition-transform group-hover:rotate-12" />
+        <LogoIcon className="w-5 h-5 transition-transform group-hover:scale-110" />
         <span className="text-xl font-heading font-medium tracking-tight">Velora</span>
       </Link>
 
