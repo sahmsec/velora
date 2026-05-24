@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { equipmentProducts } from "@/lib/data";
+import { useCart } from "@/context/CartContext";
 
 export default function FeaturedProducts() {
+  const { addToCart } = useCart();
   const featured = equipmentProducts.slice(0, 4);
 
   return (
@@ -46,23 +48,38 @@ export default function FeaturedProducts() {
               transition={{ delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] bg-[#e0dcd0] rounded-3xl overflow-hidden mb-6 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent z-10 pointer-events-none" />
-                <Image 
-                  src={product.images.sand} 
-                  alt={product.name} 
-                  fill 
-                  className="object-contain p-8 group-hover:scale-105 transition-transform duration-700 z-0" 
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                />
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-lg font-medium tracking-tight">{product.name}</h3>
-                  <p className="text-sm text-velora-black/50 capitalize mt-1">{product.category}</p>
+              <Link href={`/equipment/${product.id}`} className="block">
+                <div className="relative aspect-[4/5] bg-[#e0dcd0] rounded-3xl overflow-hidden mb-6 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent z-10 pointer-events-none" />
+                  <Image 
+                    src={product.images.sand} 
+                    alt={product.name} 
+                    fill 
+                    className="object-contain p-8 group-hover:scale-105 transition-transform duration-700 z-0" 
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-3 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-20">
+                    <button 
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); addToCart(product, "sand"); }}
+                      className="bg-velora-black text-velora-white px-8 py-3 rounded-full text-sm font-medium whitespace-nowrap hover:bg-velora-black/80 transition-colors shadow-lg"
+                    >
+                      Add to Cart
+                    </button>
+                    <span 
+                      className="bg-velora-white text-velora-black px-8 py-3 rounded-full text-sm font-medium whitespace-nowrap text-center hover:bg-gray-100 transition-colors shadow-lg"
+                    >
+                      View Details
+                    </span>
+                  </div>
                 </div>
-                <p className="font-medium text-sm">{product.price}</p>
-              </div>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-lg font-medium tracking-tight">{product.name}</h3>
+                    <p className="text-sm text-velora-black/50 capitalize mt-1">{product.category}</p>
+                  </div>
+                  <p className="font-medium text-sm">{product.price}</p>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
