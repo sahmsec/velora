@@ -31,7 +31,7 @@ export default function FloatingNavbar() {
 
       <div className="hidden md:flex items-center gap-10 text-sm font-medium">
         <Link href="/" className="hover:text-velora-sand-dark transition-colors">Home</Link>
-        <Link href="/#equipment" className="hover:text-velora-sand-dark transition-colors">Equipment</Link>
+        <Link href="/equipment" className="hover:text-velora-sand-dark transition-colors">Equipment</Link>
         <Link href="/journal" className="hover:text-velora-sand-dark transition-colors">Journal</Link>
         <Link href="/contact" className="hover:text-velora-sand-dark transition-colors">Contact</Link>
       </div>
