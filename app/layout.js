@@ -10,8 +10,25 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Velora | Premium Wellness & Reformer Fitness",
-  description: "Experience luxury minimal wellness with Velora.",
+  title: {
+    template: "%s | Velora",
+    default: "Velora | Premium Wellness & Reformer Fitness",
+  },
+  description: "Experience luxury minimal wellness with Velora. Architecturally designed Pilates reformers, strength equipment, and home gym systems crafted for your sanctuary.",
+  keywords: ["Pilates Reformer", "Luxury Home Gym", "Fitness Equipment", "Wellness", "Design", "Velora"],
+  openGraph: {
+    title: "Velora | Premium Wellness",
+    description: "Architecturally designed Pilates reformers and home gym systems.",
+    url: "https://velora.vercel.app",
+    siteName: "Velora",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Velora | Premium Wellness",
+    description: "Architecturally designed Pilates reformers and home gym systems.",
+  },
 };
 
 export default function RootLayout({ children }) {

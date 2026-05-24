@@ -50,34 +50,38 @@ export default function CartDrawer() {
                   <button onClick={() => setIsDrawerOpen(false)} className="mt-4 text-velora-black underline underline-offset-4">Continue Shopping</button>
                 </div>
               ) : (
-                cartItems.map((item, idx) => (
-                  <div key={`${item.id}-${item.color.name}-${idx}`} className="flex gap-4">
+                cartItems.map((item, idx) => {
+                  const colorKey = typeof item.color === 'string' ? item.color : (item.color?.name || 'sand');
+                  const imageSrc = item.images?.[colorKey] || item.images?.sand || "";
+                  return (
+                  <div key={`${item.id}-${colorKey}-${idx}`} className="flex gap-4">
                     <div className="w-24 h-24 rounded-xl bg-velora-sand flex items-center justify-center relative overflow-hidden shrink-0">
-                      <Image 
-                        src={item.images[item.color.name]} 
-                        alt={item.name} 
-                        fill 
-                        className="object-contain p-2"
-                        style={{ filter: item.color.filter || "none" }}
-                      />
+                      {imageSrc && (
+                        <Image 
+                          src={imageSrc} 
+                          alt={item.name} 
+                          fill 
+                          className="object-contain p-2"
+                        />
+                      )}
                     </div>
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
                         <div className="flex justify-between items-start">
                           <h3 className="font-medium">{item.name}</h3>
-                          <button onClick={() => removeFromCart(item.id, item.color.name)} className="text-velora-black/40 hover:text-velora-black transition-colors">
+                          <button onClick={() => removeFromCart(item.id, item.color)} className="text-velora-black/40 hover:text-velora-black transition-colors">
                             <X className="w-4 h-4" />
                           </button>
                         </div>
-                        <p className="text-xs text-velora-black/60 capitalize mt-1">Color: {item.color.name}</p>
+                        <p className="text-xs text-velora-black/60 capitalize mt-1">Color: {colorKey}</p>
                       </div>
                       <div className="flex justify-between items-center mt-4">
                         <div className="flex items-center gap-3 border border-velora-sand-dark/50 rounded-lg px-2 py-1">
-                          <button onClick={() => updateQuantity(item.id, item.color.name, item.quantity - 1)} className="hover:opacity-60 transition-opacity">
+                          <button onClick={() => updateQuantity(item.id, item.color, item.quantity - 1)} className="hover:opacity-60 transition-opacity">
                             <Minus className="w-3 h-3" />
                           </button>
                           <span className="text-xs font-medium w-4 text-center">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, item.color.name, item.quantity + 1)} className="hover:opacity-60 transition-opacity">
+                          <button onClick={() => updateQuantity(item.id, item.color, item.quantity + 1)} className="hover:opacity-60 transition-opacity">
                             <Plus className="w-3 h-3" />
                           </button>
                         </div>
@@ -85,7 +89,7 @@ export default function CartDrawer() {
                       </div>
                     </div>
                   </div>
-                ))
+                )})
               )}
             </div>
 

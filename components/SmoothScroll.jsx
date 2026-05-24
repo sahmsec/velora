@@ -18,7 +18,7 @@ export default function SmoothScroll({ children }) {
   }, []);
 
   return (
-    <ReactLenis root ref={lenisRef} autoRaf={false} options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
+    <ReactLenis root ref={lenisRef} autoRaf={false} options={{ lerp: 0.08, duration: 1.5, smoothWheel: true, smoothTouch: true, touchMultiplier: 2 }}>
       {children}
     </ReactLenis>
   );

@@ -4,6 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { journalPosts } from "@/lib/data";
 
+export const metadata = {
+  title: "Journal",
+  description: "Explore thoughts on design, movement, and wellness from Velora.",
+  openGraph: {
+    title: "Journal | Velora",
+    description: "Explore thoughts on design, movement, and wellness from Velora.",
+  }
+};
+
 export default function JournalPage() {
   return (
     <main className="relative bg-velora-sand min-h-screen pt-32 selection:bg-velora-black selection:text-velora-white">

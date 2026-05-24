@@ -25,7 +25,11 @@ export default function FloatingNavbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-5 bg-velora-white/80 backdrop-blur-md border-b border-velora-sand-dark/20"
     >
-      <Link href="/" className="flex items-center gap-2 group">
+      <Link 
+        href="/" 
+        className="flex items-center gap-2 group"
+        onClick={() => window.scrollTo(0, 0)}
+      >
         <LogoIcon className="w-5 h-5 transition-transform group-hover:scale-110" />
         <span className="text-xl font-heading font-medium tracking-tight">Velora</span>
       </Link>

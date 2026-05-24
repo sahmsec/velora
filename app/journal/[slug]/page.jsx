@@ -12,6 +12,28 @@ export function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = journalPosts.find(p => p.slug === slug);
+  if (!post) return {};
+  
+  // Extract first paragraph for description
+  const descriptionText = post.content.find(c => c.type === 'paragraph')?.text || "Velora Journal";
+  const shortDesc = descriptionText.length > 150 ? descriptionText.substring(0, 150) + "..." : descriptionText;
+  
+  return {
+    title: post.title,
+    description: shortDesc,
+    openGraph: {
+      title: `${post.title} | Velora Journal`,
+      description: shortDesc,
+      images: [post.img],
+      type: "article",
+      publishedTime: post.date,
+    }
+  }
+}
+
 export default async function JournalPost({ params }) {
   const { slug } = await params;
   const post = journalPosts.find((p) => p.slug === slug);

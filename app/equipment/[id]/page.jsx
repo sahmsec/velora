@@ -6,6 +6,22 @@ import Footer from "@/components/Footer";
 import { equipmentProducts } from "@/lib/data";
 import AddToCartButton from "./AddToCartButton";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const product = equipmentProducts.find(p => p.id === id);
+  if (!product) return {};
+  
+  return {
+    title: product.name,
+    description: `Shop the ${product.name}. Premium ${product.category} equipment designed for your luxury home sanctuary.`,
+    openGraph: {
+      title: `${product.name} | Velora`,
+      description: `Premium ${product.category} equipment for your home sanctuary.`,
+      images: [product.images.sand]
+    }
+  }
+}
+
 export default async function ProductPage({ params }) {
   const { id } = await params;
   const product = equipmentProducts.find(p => p.id === id);

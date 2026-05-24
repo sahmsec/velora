@@ -23,29 +23,34 @@ export function CartProvider({ children }) {
     }
   }, [cartItems, isMounted]);
 
+  const getColorKey = (color) => typeof color === 'string' ? color : (color?.name || 'sand');
+
   const addToCart = (product, color) => {
     setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id && item.color.name === color.name);
+      const colorKey = getColorKey(color);
+      const existing = prev.find(item => item.id === product.id && getColorKey(item.color) === colorKey);
       if (existing) {
         return prev.map(item => 
-          item.id === product.id && item.color.name === color.name 
+          item.id === product.id && getColorKey(item.color) === colorKey 
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      return [...prev, { ...product, color, quantity: 1 }];
+      return [...prev, { ...product, color: colorKey, quantity: 1 }];
     });
     setIsDrawerOpen(true);
   };
 
-  const removeFromCart = (productId, colorName) => {
-    setCartItems(prev => prev.filter(item => !(item.id === productId && item.color.name === colorName)));
+  const removeFromCart = (productId, color) => {
+    const colorKey = getColorKey(color);
+    setCartItems(prev => prev.filter(item => !(item.id === productId && getColorKey(item.color) === colorKey)));
   };
 
-  const updateQuantity = (productId, colorName, newQuantity) => {
-    if (newQuantity < 1) return removeFromCart(productId, colorName);
+  const updateQuantity = (productId, color, newQuantity) => {
+    const colorKey = getColorKey(color);
+    if (newQuantity < 1) return removeFromCart(productId, colorKey);
     setCartItems(prev => prev.map(item => 
-      item.id === productId && item.color.name === colorName 
+      item.id === productId && getColorKey(item.color) === colorKey 
         ? { ...item, quantity: newQuantity }
         : item
     ));
